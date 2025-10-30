@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+:root {
+  --primary: #242424;
+  --background: #F1F0EE;
+  --surfase: #F9F9F9;
+  --paragraph: #959492;
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-background: var(--background);
+  --color-surfase: var(--surfase);
+  --color-title: var(--primary);
+  --color-paragraph: var(--paragraph);
+}
