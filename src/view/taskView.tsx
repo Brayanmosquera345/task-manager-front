@@ -25,7 +25,7 @@ export default function TaskView() {
           </Button>
         </div>
       </header>
-      <main className="grid grid-cols-1 gap-6 lg:grid-cols-3 w-full">
+      <section className="grid grid-cols-1 gap-6 lg:grid-cols-3 w-full">
         <GroudTask
           title="Por hacer"
           subtitle="Ideas y tareas pendientes"
@@ -51,7 +51,7 @@ export default function TaskView() {
         >
           <CardTask title="Tarea de ejemplo" description="Descripción de la tarea" dueDate="10-10-2025" />
         </GroudTask>
-      </main>
+      </section>
     </div>
   );
 }
