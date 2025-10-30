@@ -1,21 +1,12 @@
+import { Plus } from "lucide-react";
+import Button from "../components/atoms/Buttons/Button";
 import CardTask from "../components/molecules/CardTask/CardTask";
 import GroudTask from "../components/organism/GroudTask/GroudTask";
-import Button from "../components/atoms/Buttons/Button";
-import Footer from "../components/organism/Footer/Footer";
-import ItemTap from "../components/atoms/ItemTap/ItemTap";
-import { Plus, User, Notebook } from "lucide-react";
+
 
 export default function TaskView() {
   return (
-    <div className="min-h-screen bg-background p-8 flex flex-col">
-      <nav className="border-b border-gray-200 flex">
-        <ItemTap text="Tareas" onClick={() => {}} selected={true} >
-          <Notebook size={20} />
-        </ItemTap>
-        <ItemTap text="Usuarios" onClick={() => {}} >
-          <User size={20} />
-        </ItemTap>
-      </nav>
+    <div>
       <header className="mb-6 flex items-center justify-between">
         <div className="space-y-2">
           <h1 className="text-3xl font-extrabold text-title">Tareas</h1>
@@ -34,8 +25,7 @@ export default function TaskView() {
           </Button>
         </div>
       </header>
-
-      <main className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <main className="grid grid-cols-1 gap-6 lg:grid-cols-3 w-full">
         <GroudTask
           title="Por hacer"
           subtitle="Ideas y tareas pendientes"
@@ -62,7 +52,6 @@ export default function TaskView() {
           <CardTask title="Tarea de ejemplo" description="Descripción de la tarea" dueDate="10-10-2025" />
         </GroudTask>
       </main>
-      <Footer />
     </div>
   );
 }

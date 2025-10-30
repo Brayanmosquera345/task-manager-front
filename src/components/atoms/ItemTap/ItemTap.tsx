@@ -1,27 +1,25 @@
+import { NavLink } from "react-router-dom";
+
 type ItemTapProps = {
   children: React.ReactNode;
   text: string;
-  selected?: boolean;
+  to: string;
   onClick: () => void;
 };
 
-export default function ItemTap({
-  children,
-  text,
-  onClick,
-  selected,
-}: ItemTapProps) {
+export default function ItemTap({ children, text, to, onClick }: ItemTapProps) {
   return (
-    <button
-      className={
-        selected
-          ? "flex items-center gap-2 px-4 py-2 font-medium border-b border-primary text-primary transition-colors duration-200 cursor-pointer"
-          : "flex items-center gap-2 px-4 py-2 text-paragraph font-medium border-b border-transparent hover:border-primary hover:text-primary transition-colors duration-200 cursor-pointer"
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `flex items-center gap-2 px-4 py-2 font-medium border-b  hover:border-primary hover:text-primary transition-colors duration-200 cursor-pointer ${
+          isActive ? "border-primary text-primary" : "border-transparent text-paragraph"
+        }`
       }
       onClick={onClick}
     >
       {children}
       {text}
-    </button>
+    </NavLink>
   );
 }

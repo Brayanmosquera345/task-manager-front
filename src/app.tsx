@@ -1,8 +1,8 @@
-import TaskView from "./view/taskView"
+import AppRouter from "./router/AppRouter"
 export default function App() {
   return (
     <>
-      <TaskView />
+      <AppRouter />
     </>
     )
 }
