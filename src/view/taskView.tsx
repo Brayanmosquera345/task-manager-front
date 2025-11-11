@@ -1,4 +1,3 @@
-import React from "react";
 import type { DragEndEvent } from "@dnd-kit/core";
 import {
   DndContext,
@@ -18,7 +17,11 @@ import {
 } from "@dnd-kit/sortable";
 import GroupTask from "../components/organism/GroudTask/GroudTask";
 import CardTask from "../components/molecules/CardTask/CardTask";
+import { BaseModal } from "../components/molecules/BaseModal/BaseModal";
 import type { Columns } from "../types/Task";
+import { useEffect, useState } from "react";
+import Button from "../components/atoms/Buttons/Button";
+import { Plus } from "lucide-react";
 
 const STORAGE_KEY = "my-kanban-columns-v1";
 
@@ -36,7 +39,8 @@ const initialColumns: Columns = {
 };
 
 export default function TaskView() {
-  const [columns, setColumns] = React.useState<Columns>(() => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [columns, setColumns] = useState<Columns>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       return raw ? (JSON.parse(raw) as Columns) : initialColumns;
@@ -45,9 +49,9 @@ export default function TaskView() {
     }
   });
 
-  const [activeId, setActiveId] = React.useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(columns));
   }, [columns]);
 
@@ -145,6 +149,16 @@ export default function TaskView() {
             Revisa y gestiona todas tus tareas en un lugar sencillo y rápido.
           </p>
         </div>
+        <div className="md:flex items-center gap-3 hidden">
+          <Button text="Nueva tarea" onClick={() => setIsOpen(true)}>
+            <Plus size={20} />
+          </Button>
+        </div>
+        <div className="md:hidden flex items-center gap-3">
+          <Button text="" onClick={() => setIsOpen(true)}>
+            <Plus size={20} />
+          </Button>
+        </div>
       </header>
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
@@ -174,6 +188,11 @@ export default function TaskView() {
           ) : null}
         </DragOverlay>
       </DndContext>
+      <BaseModal open={isOpen} title="Nueva tarea" onOpenChange={setIsOpen}>
+          <div className="flex flex-col gap-4 h-[600px]">
+            Modal de prueba
+          </div>
+      </BaseModal>
     </div>
   );
 }
